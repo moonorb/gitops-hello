@@ -1,0 +1,11 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- namespace.yml
+- deployment.yml
+- ingress.yml
+- service.yml
+namespace: prod
+images:
+- name: registry.moonorb.cloud:5015/gitopshello
+  newTag: accd69d6
