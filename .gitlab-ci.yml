@@ -1,0 +1,87 @@
+variables:
+  CI_REGISTRY: "registry.moonorb.cloud:5015"
+  CI_REGISTRY_IMAGE: "registry.moonorb.cloud:5015/gitopshello"
+
+
+stages:
+  - package
+  - test
+  - deploy-dev
+  - deploy-prod
+
+build:
+  tags:
+    - moonorb-shell
+  stage: package
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA .
+    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
+    - echo $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
+    - echo "Job finished"
+  only:
+    - main
+
+  
+test:
+  image: docker:stable
+  stage: test
+  services:
+    - docker:dind
+  script:
+    - docker run -d --name hello $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
+    - sleep 10s
+    - TEST=$(docker run --name curl --link hello lucj/curl -s http://hello:8000)
+    - $([ "${TEST:0:5}" = "Hello" ])
+    - echo DONE
+  after_script:
+    - docker stop hello
+    - docker rm hello
+    - docker stop curl
+    - docker rm curl
+  only:
+    - main
+
+deploy-dev:
+  stage: deploy-dev
+  image: alpine:3.8
+  before_script:
+    - sudo yum install -y git curl bash
+    - curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
+    - sudo mv kustomize /usr/local/bin/
+    - git remote set-url origin http://${CI_USERNAME}:${CI_PUSH_TOKEN}@gitlab.moonorb.cloud/moonorb/gitops-hello.git
+  script:
+    - git checkout -B main
+    - cd deployment/dev
+    - echo $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
+    - kustomize edit set image $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
+    - cat kustomization.yml
+    - git commit -am '[skip ci] DEV image update'
+    - git push origin main
+    #- git pull origin main
+  only:
+    - main
+
+deploy-prod:
+  stage: deploy-prod
+  image: alpine:3.8
+  before_script:
+    - sudo yum install -y git curl bash
+    - curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
+    - sudo mv kustomize /usr/local/bin/
+    - git remote set-url origin http://${CI_USERNAME}:${CI_PUSH_TOKEN}@gitlab.moonorb.cloud/moonorb/gitops-hello.git
+  script:
+    - git checkout -B main
+    - git pull origin main
+    - cd deployment/prod
+    - echo $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
+    - kustomize edit set image $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
+    - cat kustomization.yml
+    - git commit -am '[skip ci] PROD image update'
+    - git push origin main
+  only:
+    - main
+  when: manual
