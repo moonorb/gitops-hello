@@ -4,7 +4,6 @@ This is a Demo project for testing CI/CD flow using a simple Flask App with Gitl
 ![Alt text](https://github.com/moonorb/gitops-hello/blob/main/images/cicdwithgitops.PNG)
 
 
-
 ## Prerequisites
 This repo was tested with a "self-hosted Gitlab". Prerequisites are below. There is already a running Kubernetes cluster with ArgocD deployed. 
 
@@ -39,7 +38,6 @@ sudo usermod -aG docker gitlab-runner
 sudo systemctl start docker
 sudo systemctl enable docker
 ```
-
 
 #### Additional Steps on Gitlab Project:
 1. Add Image Registry: 
@@ -82,6 +80,6 @@ CI_REGISTRY_USER -> Nexus username
 
 Pipeline deploys the  app to Dev and then to Prod namespace
 
-[this](https://medium.com/@andrew.kaczynski/gitops-in-kubernetes-argo-cd-and-gitlab-ci-cd-5828c8eb34d6) is the article which gave me inspiration. 
+[This](https://medium.com/@andrew.kaczynski/gitops-in-kubernetes-argo-cd-and-gitlab-ci-cd-5828c8eb34d6) is the article which gave me inspiration. 
 
 
