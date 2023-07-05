@@ -7,7 +7,7 @@ This is a Demo project for testing CI/CD flow using a simple Flask App with Gitl
 ## Prerequisites
 This repo was tested with a "self-hosted Gitlab". Prerequisites are below. There is already a running Kubernetes cluster with ArgocD deployed. 
 
-#### Install Gitlab
+## Install Gitlab
 ```
 sudo yum install -y curl policycoreutils-python openssh-server perl
 curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.rpm.sh | sudo bash
@@ -15,10 +15,8 @@ sudo EXTERNAL_URL="http://gitlab.moonorb.cloud" yum install -y gitlab-ee
 ```
 There is an internal DNS which resolves "gitlab.moonorb.cloud"
 
-#### Prepare Repo for Pipeline
 
-
-#### Install Runner
+### Install Runner
 Runner is installed on the same VM. 
 ```
 curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.rpm.sh | sudo bash
@@ -28,7 +26,7 @@ sudo gitlab-runner register  --url http://gitlab.moonorb.cloud  --token <TOKEN H
 
 Important: Under your Gitlab Project->Settings->CI/CD->General Pipelines(Expand) change "Git Strategy" from its default value of *"git fetch"* to *"git clone"*
 
-#### Install Docker
+### Install Docker
 ```
 sudo yum install -y yum-utils
 sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
@@ -39,7 +37,7 @@ sudo systemctl start docker
 sudo systemctl enable docker
 ```
 
-#### Additional Steps on Gitlab Project:
+### Additional Steps on Gitlab Project:
 1. Add Image Registry: 
 I am using "Nexus Image Registry" deployed as container on another VM on my network running on the following address: "http://registry.moonorb.cloud:5015"
 
