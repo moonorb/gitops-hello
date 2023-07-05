@@ -1,8 +1,8 @@
 # CICD with Gitops
 This is a Demo project for testing CI/CD flow using a simple Flask App with Gitlab. For simplicity, I am using a single repo for both the app and deployment code with a sngle branch. The code gets deployed on Dev namespace when the pipeline is executed. Once it's manually triggered, it can be deployed on Prod namespace within the pipeline. 
-<p alight="center">
-  ![Alt text](https://github.com/moonorb/gitops-hello/blob/main/images/cicdwithgitops.PNG)
-</p
+
+![Alt text](https://github.com/moonorb/gitops-hello/blob/main/images/cicdwithgitops.PNG)
+
 
 ## Prerequisites
 This repo was tested with a "self-hosted Gitlab". Prerequisites are below. There is already a running Kubernetes cluster with ArgocD deployed. 
