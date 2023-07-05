@@ -69,7 +69,6 @@ This token will be used in variables for the runner in pipeline and also for Arg
 Project->Settings->CICD
 
 Variables: 
-
 CI_USERNAME: Username used for Gitlab login
 CI_PUSH_TOKEN: Token created on Gitlab 
 CI_REGISTRY: FQDN of Nexus
@@ -77,7 +76,7 @@ CI_REGISTRY_IMAGE: Image name of your choosing
 CI_REGISTRY_PASSWORD: Nexus password
 CI_REGISTRY_USER: Nexus username
 
-Pipeline deployes the  app to Dev namespace
+Pipeline deploys the  app to Dev and then to Prod namespace
 
 [this](https://medium.com/@andrew.kaczynski/gitops-in-kubernetes-argo-cd-and-gitlab-ci-cd-5828c8eb34d6) is the article which gave me inspiration. 
 
