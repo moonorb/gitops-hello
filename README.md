@@ -55,7 +55,7 @@ After this step we will see a section in Gitlab under "Packages and registries"-
 2. Install kubectl
 Deploy kubectl on Gitlab VM and copy the .kube/config from your K8s cluster to /home/gitlab-runner/.kube/config so Runner can deploy apps on K8s cluster. 
 
-3.Create Access Token
+3. Create Access Token
 Project->Settings->Access Tokens (as owner with all scopes)
 This token will be used in variables for the runner in pipeline and also for ArgoCD to access the repo.
 
