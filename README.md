@@ -73,9 +73,11 @@ CI_REGISTRY -> FQDN of Nexus
 
 CI_REGISTRY_IMAGE -> Image name of your choosing
 
-CI_REGISTRY_PASSWORD -> exus password
-
 CI_REGISTRY_USER -> Nexus username
+
+CI_REGISTRY_PASSWORD -> Nexus password
+
+
 
 Pipeline deploys the  app to Dev and then to Prod namespace
 
