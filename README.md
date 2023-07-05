@@ -66,7 +66,7 @@ This token will be used in variables for the runner in pipeline and also for Arg
 
 Project->Settings->CICD
 
-** Variables: **
+**Variables:**
 
 CI_USERNAME -> Username used for Gitlab login
 
