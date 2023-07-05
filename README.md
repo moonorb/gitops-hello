@@ -66,7 +66,7 @@ This token will be used in variables for the runner in pipeline and also for Arg
 
 Project->Settings->CICD
 
-![Alt text](https://github.com/moonorb/gitops-hello/blob/main/images/Variables.PNG)
+![Alt text](https://github.com/moonorb/gitops-hello/blob/main/images/variables.PNG)
 
 Pipeline deployes the  app to Dev namespace
 
