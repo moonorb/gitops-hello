@@ -41,10 +41,11 @@ sudo systemctl enable docker
 1. Add Image Registry: 
 I am using "Nexus Image Registry" deployed as container on another VM on my network running on the following address: "http://registry.moonorb.cloud:5015"
 
-Add the following line to "/etc/gitlab/gitlab.rb" 
+Edit /etc/gitlab/gitlab.rb and change external_url to your Gitlab's FQDN:
+```
 registry_external_url 'http://registry.moonorb.cloud:5015'
+```
 and run:
-
 ```
 sudo gitlab-ctl reconfigure
 ```
