@@ -16,8 +16,6 @@ sudo EXTERNAL_URL="http://gitlab.moonorb.cloud" yum install -y gitlab-ee
 ```
 There is an internal DNS which resolves "gitlab.moonorb.cloud"
 
-```
-
 #### Prepare Repo for Pipeline
 
 
