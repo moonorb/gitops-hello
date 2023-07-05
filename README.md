@@ -13,20 +13,10 @@ sudo EXTERNAL_URL="http://gitlab.moonorb.cloud" yum install -y gitlab-ee
 ```
 There is an internal DNS which resolves "gitlab.moonorb.cloud"
 
-Add the following line to "/etc/gitlab/gitlab.rb" 
-```
-registry_external_url 'http://registry.moonorb.cloud:5015'
-```
-and run:
-```
-sudo gitlab-ctl reconfigure
-```
-After this step we will see a section in Gitlab under "Packages and registries"-> Container Registry
 
-Deploy kubectl on Gitlab VM and copy the .kube/config from your K8s cluster to /home/gitlab-runner/.kube/config so Runner can deploy apps on K8s cluster. 
+```
 
 #### Prepare Repo for Pipeline
-
 
 
 #### Install Runner
@@ -50,13 +40,33 @@ sudo systemctl start docker
 sudo systemctl enable docker
 ```
 
-#### Image Registry
-There are different options for registry. I am using Nexus Image Registry on the following address: "http://registry.moonorb.cloud:5015"
 
-#### Additional Required Steps on Gitlab Project:
-Add the below variables 
+#### Additional Steps on Gitlab Project:
+1. Add Image Registry: 
+I am using "Nexus Image Registry" deployed as container on another VM on my network running on the following address: "http://registry.moonorb.cloud:5015"
 
-IMAGE HERE
+Add the following line to "/etc/gitlab/gitlab.rb" 
+```
+registry_external_url 'http://registry.moonorb.cloud:5015'
+```
+and run:
+```
+sudo gitlab-ctl reconfigure
+```
+After this step we will see a section in Gitlab under "Packages and registries"-> Container Registry
+
+2. Install kubectl
+Deploy kubectl on Gitlab VM and copy the .kube/config from your K8s cluster to /home/gitlab-runner/.kube/config so Runner can deploy apps on K8s cluster. 
+
+3.Create Access Token
+Project->Settings->Access Tokens (as owner with all scopes)
+This token will be used in variables for the pipeline.
+
+4. Add variables
+
+Project->Settings->CICD
+
+VARIABLES IMAGE HERE
 
 
 

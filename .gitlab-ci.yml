@@ -1,8 +1,3 @@
-variables:
-  CI_REGISTRY: "registry.moonorb.cloud:5015"
-  CI_REGISTRY_IMAGE: "registry.moonorb.cloud:5015/gitopshello"
-
-
 stages:
   - package
   - test
