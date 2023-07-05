@@ -1,9 +1,8 @@
 ## gitops-hello
-This is a Demo project for testing CI/CD folow using a simple Web Application. It works on Gitlab since there is .gitlab-ci.yml file here.  [this](https://medium.com/@andrew.kaczynski/gitops-in-kubernetes-argo-cd-and-gitlab-ci-cd-5828c8eb34d6) is the article which gave me inspiration. 
+This is a Demo project for testing CI/CD folow using a simple Flask App. This code is meant to work on Gitlab. For simplicity, I am using a single repo for both the app and deployment code with a sngle branch. The code gets deployed on Dev namespace when the pipeline is executed. Once it's manually triggered it also gets deployed on Prod namespace. [this](https://medium.com/@andrew.kaczynski/gitops-in-kubernetes-argo-cd-and-gitlab-ci-cd-5828c8eb34d6) is the article which gave me inspiration. 
 
 ## Prerequisites
-
-This repo was tested with a "self-hosted Gitlab". Below are the steps I used for installing Gitlab on an Ubuntu VM. There is already a running Kubernetes cluster with ArgocD deployed. 
+This repo was tested with a "self-hosted Gitlab". Prerequisites are below. There is already a running Kubernetes cluster with ArgocD deployed. 
 
 #### Install Gitlab
 ```
@@ -60,7 +59,7 @@ Deploy kubectl on Gitlab VM and copy the .kube/config from your K8s cluster to /
 
 3.Create Access Token
 Project->Settings->Access Tokens (as owner with all scopes)
-This token will be used in variables for the pipeline.
+This token will be used in variables for the runner in pipeline and also for ArgoCD to access the repo.
 
 4. Add variables
 
@@ -68,5 +67,6 @@ Project->Settings->CICD
 
 VARIABLES IMAGE HERE
 
+Pipeline deployes the  app to Dev namespace
 
 
