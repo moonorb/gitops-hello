@@ -48,13 +48,13 @@ sudo systemctl enable docker
 I am using "Nexus Image Registry" deployed as container on another VM on my network running on the following address: "http://registry.moonorb.cloud:5015"
 
 Add the following line to "/etc/gitlab/gitlab.rb" 
-```
 registry_external_url 'http://registry.moonorb.cloud:5015'
-```
 and run:
+
 ```
 sudo gitlab-ctl reconfigure
 ```
+
 After this step we will see a section in Gitlab under "Packages and registries"-> Container Registry
 
 2. Install kubectl
