@@ -3,6 +3,8 @@ This is a Demo project for testing CI/CD flow using a simple Flask App with Gitl
 
 ![Alt text](https://github.com/moonorb/gitops-hello/blob/main/images/cicdwithgitops.PNG)
 
+
+
 ## Prerequisites
 This repo was tested with a "self-hosted Gitlab". Prerequisites are below. There is already a running Kubernetes cluster with ArgocD deployed. 
 
@@ -65,9 +67,13 @@ This token will be used in variables for the runner in pipeline and also for Arg
 4. Add variables
 
 Project->Settings->CICD
+![Alt text] (https://github.com/moonorb/gitops-hello/blob/main/images/variables.PNG)
 
-![Alt text](https://github.com/moonorb/gitops-hello/blob/main/images/variables.PNG)
+![alt text](https://github.com/moonorb/gitops-hello/blob/main/images/variables.PNG)
+
 
 Pipeline deployes the  app to Dev namespace
 
 [this](https://medium.com/@andrew.kaczynski/gitops-in-kubernetes-argo-cd-and-gitlab-ci-cd-5828c8eb34d6) is the article which gave me inspiration. 
+
+
