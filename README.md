@@ -1,5 +1,7 @@
-## gitops-hello
-This is a Demo project for testing CI/CD folow using a simple Flask App. This code is meant to work on Gitlab. For simplicity, I am using a single repo for both the app and deployment code with a sngle branch. The code gets deployed on Dev namespace when the pipeline is executed. Once it's manually triggered it also gets deployed on Prod namespace. [this](https://medium.com/@andrew.kaczynski/gitops-in-kubernetes-argo-cd-and-gitlab-ci-cd-5828c8eb34d6) is the article which gave me inspiration. 
+# CICD with Gitops
+This is a Demo project for testing CI/CD flow using a simple Flask App with Gitlab. For simplicity, I am using a single repo for both the app and deployment code with a sngle branch. The code gets deployed on Dev namespace when the pipeline is executed. Once it's manually triggered, it can be deployed on Prod namespace within the pipeline. 
+
+![Alt text](https://github.com/moonorb/gitops-hello/blob/main/images/cicdwithgitops.PNG)
 
 ## Prerequisites
 This repo was tested with a "self-hosted Gitlab". Prerequisites are below. There is already a running Kubernetes cluster with ArgocD deployed. 
@@ -11,7 +13,6 @@ curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.rp
 sudo EXTERNAL_URL="http://gitlab.moonorb.cloud" yum install -y gitlab-ee
 ```
 There is an internal DNS which resolves "gitlab.moonorb.cloud"
-
 
 ```
 
@@ -65,8 +66,8 @@ This token will be used in variables for the runner in pipeline and also for Arg
 
 Project->Settings->CICD
 
-VARIABLES IMAGE HERE
+![Alt text](https://github.com/moonorb/gitops-hello/blob/main/images/Variables.PNG)
 
 Pipeline deployes the  app to Dev namespace
 
-
+[this](https://medium.com/@andrew.kaczynski/gitops-in-kubernetes-argo-cd-and-gitlab-ci-cd-5828c8eb34d6) is the article which gave me inspiration. 
